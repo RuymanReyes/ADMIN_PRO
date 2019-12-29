@@ -1,6 +1,7 @@
 {
     "extends": "tslint:recommended",
     "rules": {
+        "semicolon": [true, "always"],
         "array-type": false,
         "arrow-parens": false,
         "deprecation": {

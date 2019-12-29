@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { UsuarioService } from '../services/service.index';
@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
   constructor(
     public router: Router,
     // tslint:disable-next-line: variable-name
-    public _usuarioService: UsuarioService
+    public _usuarioService: UsuarioService,
+    public _ngZone: NgZone
   ) { }
 
   ngOnInit() {
@@ -63,13 +64,13 @@ export class LoginComponent implements OnInit {
       console.log(token);
 
       this._usuarioService.loginGoogle(token)
-        .subscribe(loginCorrecto => this.router.navigate(['/dashboard']));
-      // en el caso de que cuando entremos nos de errores de recarga, debemos hacer lo siguiente
-      // .subcribe( () => windows.location.href = '#/dashboard' );
-      // Otra manera sin que tener que usar JS es la usando NgZone de angular, que debemos importar
-      // e inyectar dentro del constructor como siempre
-      // this._usuarioService.loginGoogle(token)
-      //   .subscribe(() => this._ngZone.run(() => this.router.navigate(['/dashboard'])));
+        // .subscribe(loginCorrecto => this.router.navigate(['/dashboard']));
+        // en el caso de que cuando entremos nos de errores de recarga, debemos hacer lo siguiente
+        // .subcribe( () => windows.location.href = '#/dashboard' );
+        // Otra manera sin que tener que usar JS es la usando NgZone de angular, que debemos importar
+        // e inyectar dentro del constructor como siempre
+        // this._usuarioService.loginGoogle(token)
+        .subscribe(() => this._ngZone.run(() => this.router.navigate(['/dashboard'])));
 
       console.log(profile);
     });

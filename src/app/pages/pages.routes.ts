@@ -9,11 +9,14 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 
+import { LoginGuard } from '../services/guards/login.guard';
+
 
 const PAGESROUTES: Routes = [
   {
     path: '',
     component: PagesComponent,
+    canActivate: [LoginGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard' } },
       { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress' } },
