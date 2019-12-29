@@ -33,7 +33,7 @@ export class UsuarioService {
 
 
   loginGoogle(token: string) {
-    let url = URL_SERVICES + '/login/google';
+    const url = URL_SERVICES + '/login/google';
 
     return this.http.post(url, { token })
       .pipe(map((resp: any) => {
@@ -47,7 +47,7 @@ export class UsuarioService {
 
 
     if (recuerdame === true) {
-      localStorage.setItem('email', usuario.email)
+      localStorage.setItem('email', usuario.email);
     } else {
       localStorage.removeItem('email');
     }

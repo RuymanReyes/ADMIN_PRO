@@ -7,7 +7,7 @@ import { Usuario } from '../models/usuario.model';
 
 declare function init_plugins(); // esta funcion es del template para que no se quede en el spinner trabado.
 
-// declaramos aquí como arriba una librería y le decimos que existe a TS, es de google. 
+// declaramos aquí como arriba una librería y le decimos que existe a TS, es de google.
 declare const gapi: any;
 
 
@@ -21,11 +21,12 @@ export class LoginComponent implements OnInit {
   recuerdame: boolean = false;
   email: string;
 
-  // esto es un método de google que declaramos para general el token de google. 
+  // esto es un método de google que declaramos para general el token de google.
   auth2: any;
 
   constructor(
     public router: Router,
+    // tslint:disable-next-line: variable-name
     public _usuarioService: UsuarioService
   ) { }
 
@@ -56,9 +57,9 @@ export class LoginComponent implements OnInit {
 
   attacSignin(element) {
     this.auth2.attachClickHandler(element, {}, (googleUser) => {
-      let profile = googleUser.getBasicProfile();
+      const profile = googleUser.getBasicProfile();
 
-      let token = googleUser.getAuthResponse().id_token;
+      const token = googleUser.getAuthResponse().id_token;
       console.log(token);
 
       this._usuarioService.loginGoogle(token)
