@@ -5,3 +5,11 @@
 .pointer {
     cursor: pointer;
 }
+
+.boton {
+    margin-top: 20px;
+}
+
+.w150 {
+    width: 150px;
+}

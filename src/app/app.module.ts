@@ -19,21 +19,23 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-  ],
-  imports: [
-    BrowserModule,
-    APP_ROUTES,
-    PagesModule,
-    FormsModule,
-    ServiceModule,
-    ReactiveFormsModule,
-    SweetAlert2Module
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      LoginComponent,
+      RegisterComponent,
+   ],
+   imports: [
+      BrowserModule,
+      APP_ROUTES,
+      PagesModule,
+      FormsModule,
+      ServiceModule,
+      ReactiveFormsModule,
+      SweetAlert2Module
+   ],
+   providers: [],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
