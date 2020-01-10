@@ -5,6 +5,8 @@ import { SharedMoule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PipesModule } from '../pipes/pipes.module';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+
 
 
 
@@ -26,6 +28,7 @@ import { AccountSettingComponent } from './account-setting/account-setting.compo
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 
 @NgModule({
@@ -39,7 +42,9 @@ import { ProfileComponent } from './profile/profile.component';
     AccountSettingComponent,
     PromisesComponent,
     RxjsComponent,
-    ProfileComponent
+    ProfileComponent,
+    UsuariosComponent,
+    ModalUploadComponent
   ],
   exports: [
     CommonModule,
@@ -55,7 +60,8 @@ import { ProfileComponent } from './profile/profile.component';
     FormsModule,
     ChartsModule,
     PipesModule,
-    CommonModule
+    CommonModule,
+
   ]
 })
 

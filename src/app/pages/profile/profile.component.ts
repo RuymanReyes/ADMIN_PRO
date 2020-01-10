@@ -14,7 +14,10 @@ export class ProfileComponent implements OnInit {
 
   imagenSubir: File;
 
-  imagenTemp: string;
+  // estamos unsando más abajo Js puro, y cuando le asignamos un string a este elemento nos da un error
+  // porque no le podemos asignar un FileReader un string por eso le colocamos un ArrayBuffer.
+
+  imagenTemp: string | ArrayBuffer;
 
 
   constructor(

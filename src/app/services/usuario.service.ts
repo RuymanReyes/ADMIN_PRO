@@ -25,6 +25,9 @@ export class UsuarioService {
     this.cargarStorage();
   }
 
+  //====================================
+  // LOGOUT USAURIO 
+  //====================================
 
   logOut() {
     this.usuario = null;
@@ -36,10 +39,16 @@ export class UsuarioService {
     this.router.navigate(['/login']);
   }
 
+  // ====================================
+  // ESTA LOGUEADO
+  // ====================================
   estaLogueado() {
     return (this.token.length > 5) ? true : false;
   }
 
+  // ====================================
+  // CARGAR EL STORAGE 
+  // ====================================
   cargarStorage() {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
@@ -50,7 +59,9 @@ export class UsuarioService {
     }
   }
 
-
+  // ====================================
+  // GUARDAR EN EL LOCALSTORAGE 
+  // ====================================
   guardarStorage(id: string, token: string, usuario: Usuario) {
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
@@ -60,7 +71,9 @@ export class UsuarioService {
     this.token = token;
   }
 
-
+  // ====================================
+  // LOGIN CON GOOGLE
+  // ====================================
   loginGoogle(token: string) {
     const url = URL_SERVICES + '/login/google';
 
@@ -71,7 +84,9 @@ export class UsuarioService {
       }));
   }
 
-
+  // ====================================
+  // LOGIN NORMAL
+  // ====================================
   login(usuario: Usuario, recuerdame: boolean = false) {
 
 
@@ -91,6 +106,10 @@ export class UsuarioService {
       }));
   }
 
+  // ====================================
+  // CREAR USUARIO
+  // ====================================
+
   crearUsuario(usuario: Usuario) {
 
     const url = URL_SERVICES + '/usuario';
@@ -103,14 +122,21 @@ export class UsuarioService {
       );
   }
 
+  // ====================================
+  // ACTUALIZAR USUARIO 
+  // ====================================
   actualizarUsuario(usuario: Usuario) {
     let url = URL_SERVICES + '/usuario/' + usuario._id;
     url += '?token=' + this.token;
 
     return this.http.put(url, usuario)
       .pipe(map((resp: any) => {
-        let usuarioDB: Usuario = resp.usuario;
-        this.guardarStorage(usuarioDB._id, this.token, usuarioDB);
+
+        if (usuario._id === this.usuario._id) {
+          let usuarioDB: Usuario = resp.usuario;
+          this.guardarStorage(usuarioDB._id, this.token, usuarioDB);
+        }
+
 
         Swal.fire('Usuario Actualizado', usuario.nombre, 'success');
 
@@ -118,6 +144,29 @@ export class UsuarioService {
       }));
 
   }
+
+  // ====================================
+  // ELIMINAR USUARIO
+  // ====================================
+
+  borrarUsuario(id: string) {
+    let url = URL_SERVICES + '/usuario/' + id;
+    url += '?token=' + this.token;
+
+    return this.http.delete(url)
+      .pipe(map((resp: any) => {
+        Swal.fire(
+          '¡Borrado!',
+          'El usuario,' + this.usuario.nombre + 'ha sido borrado',
+          'success'
+        );
+        return true;
+      }));
+  }
+
+  // ====================================
+  // CAMBIAR IMAGEN DE USUARIO
+  // ====================================
 
   cambiarImagen(archivo: File, id: string) {
 
@@ -135,6 +184,25 @@ export class UsuarioService {
   }
 
 
+  // ====================================
+  // CARGAR USUARIOS
+  // ====================================
 
+  cargarUsuarios(desde: number = 0) {
+
+    let url = URL_SERVICES + '/usuario?desde=' + desde;
+
+    return this.http.get(url);
+  }
+
+  // ====================================
+  // BUSCAR UN USUARIO
+  // ====================================
+
+  buscarUsuarios(termino: string) {
+    let url = URL_SERVICES + '/busqueda/coleccion/usuarios/' + termino;
+    return this.http.get(url)
+      .pipe(map((resp: any) => resp.usuarios));
+  }
 
 }

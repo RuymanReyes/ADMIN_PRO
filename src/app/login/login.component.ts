@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
       const profile = googleUser.getBasicProfile();
 
       const token = googleUser.getAuthResponse().id_token;
-      console.log(token);
+
 
       this._usuarioService.loginGoogle(token)
         // .subscribe(loginCorrecto => this.router.navigate(['/dashboard']));
@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit {
         // this._usuarioService.loginGoogle(token)
         .subscribe(() => this._ngZone.run(() => this.router.navigate(['/dashboard'])));
 
-      console.log(profile);
     });
   }
 
