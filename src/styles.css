@@ -35,3 +35,7 @@
 .oculto {
     display: none;
 }
+
+.margin {
+    margin-left: 10px;
+}

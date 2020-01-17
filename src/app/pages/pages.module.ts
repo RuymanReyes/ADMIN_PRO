@@ -22,6 +22,7 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { ProgressComponent } from './progress/progress.component';
 import { PagesComponent } from './pages.component';
 
+
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
 import { GraficosDonaComponent } from '../components/graficos-dona/graficos-dona.component';
 import { AccountSettingComponent } from './account-setting/account-setting.component';
@@ -29,6 +30,10 @@ import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { HospitalesComponent } from './hospitales/hospitales.component';
+import { MedicosComponent } from './medicos/medicos.component';
+import { MedicoComponent } from './medicos/medico.component';
+import { BuscadorComponent } from '../components/buscador/buscador.component';
 
 
 @NgModule({
@@ -44,7 +49,11 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     RxjsComponent,
     ProfileComponent,
     UsuariosComponent,
-    ModalUploadComponent
+    ModalUploadComponent,
+    HospitalesComponent,
+    MedicosComponent,
+    MedicoComponent,
+    BuscadorComponent
   ],
   exports: [
     CommonModule,

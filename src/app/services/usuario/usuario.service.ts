@@ -1,12 +1,12 @@
-import { Usuario } from './../models/usuario.model';
+import { Usuario } from '../../models/usuario.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { URL_SERVICES } from '../config/config';
+import { URL_SERVICES } from '../../config/config';
 import { map } from 'rxjs/operators';
 import { pipe } from 'rxjs';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { SubirArchivoService } from './subir-archivo/subir-archivo.service';
+import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
 
 @Injectable({
@@ -25,9 +25,9 @@ export class UsuarioService {
     this.cargarStorage();
   }
 
-  //====================================
-  // LOGOUT USAURIO 
-  //====================================
+  // ====================================
+  // LOGOUT USUARIO
+  // ====================================
 
   logOut() {
     this.usuario = null;
@@ -47,7 +47,7 @@ export class UsuarioService {
   }
 
   // ====================================
-  // CARGAR EL STORAGE 
+  // CARGAR EL STORAGE
   // ====================================
   cargarStorage() {
     if (localStorage.getItem('token')) {
@@ -60,7 +60,7 @@ export class UsuarioService {
   }
 
   // ====================================
-  // GUARDAR EN EL LOCALSTORAGE 
+  // GUARDAR EN EL LOCALSTORAGE
   // ====================================
   guardarStorage(id: string, token: string, usuario: Usuario) {
     localStorage.setItem('id', id);
@@ -123,7 +123,7 @@ export class UsuarioService {
   }
 
   // ====================================
-  // ACTUALIZAR USUARIO 
+  // ACTUALIZAR USUARIO
   // ====================================
   actualizarUsuario(usuario: Usuario) {
     let url = URL_SERVICES + '/usuario/' + usuario._id;
@@ -133,7 +133,7 @@ export class UsuarioService {
       .pipe(map((resp: any) => {
 
         if (usuario._id === this.usuario._id) {
-          let usuarioDB: Usuario = resp.usuario;
+          const usuarioDB: Usuario = resp.usuario;
           this.guardarStorage(usuarioDB._id, this.token, usuarioDB);
         }
 
@@ -190,7 +190,7 @@ export class UsuarioService {
 
   cargarUsuarios(desde: number = 0) {
 
-    let url = URL_SERVICES + '/usuario?desde=' + desde;
+    const url = URL_SERVICES + '/usuario?desde=' + desde;
 
     return this.http.get(url);
   }
@@ -200,7 +200,7 @@ export class UsuarioService {
   // ====================================
 
   buscarUsuarios(termino: string) {
-    let url = URL_SERVICES + '/busqueda/coleccion/usuarios/' + termino;
+    const url = URL_SERVICES + '/busqueda/coleccion/usuarios/' + termino;
     return this.http.get(url)
       .pipe(map((resp: any) => resp.usuarios));
   }
