@@ -30,11 +30,14 @@ export class HospitalService {
   // CARGAR LOS HOSPITALES
   // ====================================
 
-  cargarHopitales(desde: number = 0) {
+  cargarHospitales(desde: number = 0) {
 
     const url = URL_SERVICES + '/hospital?desde=' + desde;
 
-    return this.http.get(url);
+    return this.http.get(url)
+      .pipe(map( (resp: any) => {
+        return resp.hospitales;
+      }));
   }
 
   // ====================================
@@ -43,7 +46,8 @@ export class HospitalService {
 
   getHospitalByID(id) {
     const url = URL_SERVICES + '/hospital/' + id;
-    return this.http.get(url);
+    return this.http.get(url)
+        .pipe(map ( (resp: any) => resp.hospital ));
   }
 
   // ====================================

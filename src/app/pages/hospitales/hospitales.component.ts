@@ -47,21 +47,20 @@ export class HospitalesComponent implements OnInit {
 
     this.cargando = true;
 
-    this._hospitalesServices.cargarHopitales(this.desde)
-          .subscribe((resp: any) => {
+    this._hospitalesServices.cargarHospitales(this.desde)
+         .subscribe( (resp: any) => {
             console.log(resp);
-            this.totalRegistros= resp.total;
-            this.hospitales = resp.hospitales;
+            this.totalRegistros = resp.total;
+            this.hospitales = resp;
             this.cargando = false;
-
-          });
+         });
   }
 
   obtenerHospitalById( id ) {
     this.cargando = true;
 
     this._hospitalesServices.getHospitalByID( id )
-        .subscribe((resp: any) =>{
+        .subscribe((resp: any) => {
           console.log(resp);
           this.cargando = false;
         });
@@ -132,9 +131,9 @@ export class HospitalesComponent implements OnInit {
         .subscribe();
   }
 
-actualizarImagen( hospital: Hospital ){
-
-  this._modalUploadService.mostrarModal( 'hospitales', hospital._id);
-}
+  actualizarImagen( hospital: Hospital ) {
+  
+    this._modalUploadService.mostrarModal( 'hospitales', hospital._id);
+  }
 
 }
