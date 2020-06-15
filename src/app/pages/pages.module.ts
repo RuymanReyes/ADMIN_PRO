@@ -34,6 +34,7 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BuscadorComponent } from '../components/buscador/buscador.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { BuscadorComponent } from '../components/buscador/buscador.component';
     HospitalesComponent,
     MedicosComponent,
     MedicoComponent,
-    BuscadorComponent
+    BuscadorComponent,
+    BusquedaComponent
   ],
   exports: [
     CommonModule,
