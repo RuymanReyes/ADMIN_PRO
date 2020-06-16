@@ -10,9 +10,10 @@ import {
   UsuarioService,
   LoginGuard,
   AdminGuard,
+  VerificaTokenGuard,
   SubirArchivoService,
   HospitalService,
-  MedicoService
+  MedicoService,
 
 } from './service.index';
 
@@ -32,6 +33,7 @@ import {
     SubirArchivoService,
     LoginGuard,
     AdminGuard,
+    VerificaTokenGuard,
     ModalUploadService,
     HospitalService,
     MedicoService
